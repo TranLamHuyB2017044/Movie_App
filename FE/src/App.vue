@@ -1,9 +1,29 @@
-<script setup>
-</script>
-
 <template>
-  <h1>Hello Vue js</h1>
+  <div id="app">
+    <app-header/>
+    <app-navbar/>
+    <router-view></router-view>
+    <app-footer/>
+  </div>
 </template>
 
-<style scoped>
+<script>
+import AppHeader from './components/AppHeader.vue';
+import AppFooter from './components/AppFooter.vue';
+import AppNavbar from './components/AppNavbar.vue';
+export default{
+  name: 'App',
+  components:{
+    AppHeader,
+    AppFooter,
+    AppNavbar,
+    
+  }
+}
+</script>
+
+<style>
+*{
+  background-color: #24252A;
+}
 </style>
