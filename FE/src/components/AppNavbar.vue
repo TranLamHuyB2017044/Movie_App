@@ -1,16 +1,16 @@
 <template>
     <div class="navbar">
-        <a href="#home" class="nav-link nav-active">
-            <i class="fa-solid fas fa-house"></i>
+        <router-link :to = "{name: 'home'}" @click="scrollToTop" class="nav-link">
+            <i class="fa-solid fas fa-house"> <a href="#home"></a></i>
             <span class="nav-link-title"> Home</span>
-        </a>
-        <a href="#" class="nav-link">
+        </router-link>
+        <router-link class="nav-link" :to = "{name: 'add'}" >
             <i class="fa-regular fas fa-square-plus"></i>
             <span class="nav-link-title"> Create</span>
-        </a>
-        <a href="#" class="nav-link">
+        </router-link>
+        <a  class="nav-link">
             <i class="fa-solid fas fa-fire"></i>
-            <span class="nav-link-title"> Trending</span>
+            <span class="nav-link-title">Trending</span>
         </a>
         <a href="#" class="nav-link">
             <i class="fa-solid fas fa-tv"></i>
@@ -18,7 +18,16 @@
         </a>
     </div>
 </template>
-<script></script>
+<script>
+export default{
+    methods: { 
+        scrollToTop() {
+            window.scrollTo(0,0);
+        },
+
+    },
+}
+</script>
 <style scoped>
 .navbar{
     position: fixed;
@@ -33,11 +42,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: aliceblue;
+    color: aliceblue !important;
 }
 .nav-link:hover,
 .nav-active{
-    color: #0088a9;
+    color: #0088a9 !important;
     transition: 0.3s all linear;
     transform: scale(1.1);
 }

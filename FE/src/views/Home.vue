@@ -1,56 +1,100 @@
 <template>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-sm-2 mt-4 d-flex"
-                v-for="post in posts"
-                :key="post._id" 
-              >
-                <router-link :to= "{name: 'detail', params: {name: post.name}}">
-                    <div class="card" style="width: 18rem;" >
-                        <img  :src="`https://i.ytimg.com/vi/${post.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">{{post.name}}</h5>
-                            <h5 class="card-title">{{post.author}}</h5>
-                            <p class="card-text">{{post.description.substring(0,30) + "..."}}</p>
-                        </div>
-                    </div>
-                </router-link>
-
-            </div>
+  <div class="container">
+    <div class="row">
+      
+      <sidebar-home />
+      <!-- Popular -->
+      <section class="popular container mt-5" ref="popular">
+        <div class="heading">
+          <h2  class="heading-title">Popular Movies</h2>
         </div>
+        <!-- content -->
+        <div class="popular-content">
+          <popular-moives />
+        </div>
+      </section>
+      <section class="moives container mt-5" id="movies">
+        <div class="heading">
+          <h2 class="heading-title">Movies And Show</h2>
+        </div>
+      </section>
+      <div
+        class="col-md-3 mt-5 d-flex col-12 col-sm-6 d-flex justify-content-end"
+        v-for="post in posts"
+        :key="post._id"
+      >
+        <Router-link
+          class="card-movies"
+          :to="{ name: 'detail', params: { slug: post.slug } }"
+          @click.native="scrollToTop"
+        >
+          <div class="card">
+            <img
+              :src="`https://i.ytimg.com/vi/${post.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`"
+              class="card-img-top"
+              alt=""
+            >
+            <div class="card-body">
+              <h5 class="card-title">{{ post.name }}</h5>
+              <h5 class="card-title">{{ post.author }}</h5>
+              <p class="card-text">
+                {{ post.description.substring(0, 30) + "..." }}
+              </p>
+            </div>
+          </div>
+        </Router-link>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import MovieService from "@/services/movie.service";
-
+import SidebarHome from "../components/SidebarHome.vue";
+import PopularMoives from "../components/PopularMoives.vue";
 export default {
-  components: {
-    MovieService,
+  components:{
+    SidebarHome,
+    PopularMoives,
   },
   data() {
     return {
       posts: [],
     };
   },
-  async created(){
-    this.posts =  await MovieService.getAll();
-  }
+  async created() {
+    this.posts = await MovieService.getAll();
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
 
+  },
 };
 </script>
 <style scoped>
-
-*{
-    scroll-behavior: smooth;
-    color: aliceblue;
-    text-decoration: none;
-}
-img{
-    height: 220px;
+* {
+  scroll-behavior: smooth;
+  color: white;
+  text-decoration: none;
 }
 
-.card{
-  margin-top: 48px;
-  
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #333335;
+  padding: 8px 14px;
+  border: 1px solid hsl(200 100% 99% / 5%);
+  margin-top: -10px;
+}
+.heading-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.card-movies:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
 </style>

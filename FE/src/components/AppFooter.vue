@@ -61,7 +61,7 @@ ul{
 	list-style: none;
 }
 .footer{
-	background-color: #24262b;
+	background-color: #24252A;
     padding: 70px 0;
 }
 .footer-col{
@@ -116,8 +116,8 @@ ul{
 	transition: all 0.5s ease;
 }
 .footer-col .social-links a:hover{
-	color: #24262b;
-	background-color: #ffffff;
+	/* color: #24262b; */
+	background-color: #0088a9;
 }
 
 /*responsive*/

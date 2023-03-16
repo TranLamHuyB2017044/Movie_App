@@ -14,4 +14,13 @@ const postSchema = new Schema({
     timestamps: true,
 });
 
-module.exports = mongoose.model('Post', postSchema);
+const userSchema = new Schema({
+    username:String,
+    password:String,
+})
+const Post = mongoose.model('Post', postSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = {
+    Post, User
+}

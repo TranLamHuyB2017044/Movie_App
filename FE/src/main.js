@@ -3,7 +3,10 @@ import App from './App.vue'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import router from "./router";
-// import './assets/main.css'
+import { createPinia } from 'pinia'
+// slidejs config
+import VueSplide from '@splidejs/vue-splide';
+import '@splidejs/vue-splide/css/sea-green';
 
 
-createApp(App).use(router).mount('#app');
+createApp(App).use(router).use( VueSplide ).use(createPinia()).mount('#app');

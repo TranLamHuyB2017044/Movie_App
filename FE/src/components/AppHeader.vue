@@ -1,15 +1,17 @@
 <template>
     <header>
         <div class="nav container"> 
-            <a href="#" class="logo">
+            <router-link class="logo" :to = "{name : 'home'}">
                 Movie<span>Vel</span>
-            </a>
+            </router-link>
             <div class="search-box">
-                <input type="search" name="" id="search-input" placeholder="Search Movie">
                 <i class="fas fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="" id="search-input" placeholder="Enter keywords...">
             </div>
+            <router-link :to = "{name : 'signin'}" class="Login">
+                <i class="login-icon fa-regular fa-user "> Login</i>
+            </router-link>
         </div>
-
     </header>
 </template>
 <script>
@@ -22,7 +24,6 @@ export default {};
     width: 100%;
 }
 header{
-    
     position: fixed;
     top: 0;
     left: 0;
@@ -82,6 +83,17 @@ header{
     color: #24262b;
     background: transparent;
     font-size: 0.938rem;
+}
+.Login{
+    margin-right: 0.813rem;
+}
+.login-icon{
+    color: white;
+    font-size: 16px;
+}
+
+.login-icon:hover{
+    color: #0088a9;
 }
 
 

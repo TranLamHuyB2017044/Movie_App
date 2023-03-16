@@ -2,6 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import AddPost from "@/views/AddPost.vue";
 import DetailPost from "@/views/DetailPost.vue";
+import EditPost from "@/views/EditPost.vue";
+import SignIn from "@/views/SignIn.vue";
+import SignUp from "@/views/SignUp.vue";
 const routes = [
   {
     path: "/",
@@ -9,15 +12,32 @@ const routes = [
     component: Home,
   },
   {
-    path: "/create",
-    name: "create",
+    path: "/AddPost",
+    name: "add",
     component: AddPost,
   },
   {
-    path: "/post/:name",
+    path: "/:slug",
     name: "detail",
     component: DetailPost,
+    props: true,
   },
+  {
+    path: "/editPost/:slug",
+    name: "edit-post",
+    component: EditPost,
+    
+  },
+  {
+    path: '/Signin',
+    name: "signin",
+    component: SignIn,
+  },
+  {
+    path: '/Signup',
+    name: "signup",
+    component: SignUp,
+  }
   
 
 ];

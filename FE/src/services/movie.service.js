@@ -7,17 +7,20 @@ class MovieService {
     async getAll(){
         return  (await this.api.get("/")).data;
     }
-    async create(data) {
-        return (await this.api.post("/", data)).data;
-    }
-    async delete(slug) {
-        return (await this.api.delete(`${slug}`)).data;
-    }
     async getOnePost(slug) {
         return (await this.api.get(`/${slug}`)).data;
     }
-    async update(id, data) {
+    async addPost(data) {
+        return (await this.api.post("/", data)).data;
+    }
+    async deletePost(slug) {
+        return (await this.api.delete(`/${slug}`)).data;
+    }
+    async updatePost(id, data) {
         return (await this.api.put(`/${id}/edit`, data)).data;
+    }
+    async logIn(data){
+        return (await this.api.post(`/signin`, data)).data;
     }
 }
 

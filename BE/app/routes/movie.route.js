@@ -14,7 +14,7 @@ router.route('/signin')
     .post(movie.SignIn);
 router.route('/signup')
     .post(movie.SignUp);
-router.route('/:id/edit')
+router.route('/:slug/edit')
     .put(movie.updatePost)
 
 module.exports = router;
