@@ -31,6 +31,7 @@ export default defineComponent({
       type: "loop",
       pauOnFocus: false,
       perPage: 6,
+      arrows: false,
     };
     return { options };
   },

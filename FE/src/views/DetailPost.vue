@@ -1,5 +1,5 @@
 <template>
-    <div class="container play-container">
+    <div class="container play-container" v-if="post">
         <iframe :src="`https://www.youtube-nocookie.com/embed/${post.videoId}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <div class="play-text">
             <h2 class="my-4">{{ post.name }} - {{ post.author }}</h2>
@@ -17,7 +17,7 @@ import MovieService from "@/services/movie.service";
 
 
 export default {
-    props:{slug:{type: String, required: true}},
+    props:{ slug:{type: String, required: true}},
     data() {
         return {
             post:{},

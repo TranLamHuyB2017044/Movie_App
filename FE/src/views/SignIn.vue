@@ -41,10 +41,35 @@
     </Form>
   </div>
 </template>
-<script setup>
-import {userAccountStore} from '@/stores/userAccountStore';
-const user = userAccountStore();
-console.log(user.username)
+<script>
+import * as yup from "yup";
+import { Form, Field, ErrorMessage } from "vee-validate";
+
+export default {
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    const SignInFormSchema = yup.object().shape({
+      username: yup
+        .string()
+        .required()
+        .min(2, "Tên phải ít nhất 2 ký tự.")
+        .max(50, "Tên có nhiều nhất 50 ký tự."),
+      password: yup
+        .string()
+        .required()
+        .min(6, "Mật khẩu ít nhất 6 ký tự.")
+        .max(50, "Mật khẩu có nhiều nhất 50 ký tự."),
+    });
+    return {
+      SignInFormSchema,
+      User: {},
+    };
+  }
+}
 </script>
 <style scoped>
 .container {

@@ -1,5 +1,4 @@
 const {Post, User} = require('../services/movie.service');
-
 module.exports = class API{
     static async showAllPost(req, res){
         try {
@@ -20,18 +19,18 @@ module.exports = class API{
         
     }
     static async createNewPost(req, res){
-        const formData = req.body;
-        formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`
+        const post = req.body;
         try {
-            await Post.create(formData);
+            await Post.create(post);
             res.status(201).json({message: 'Post created successfully!'});
         } catch (error) {
             res.status(400).json({message: error.message});
         }
     }
     static async updatePost(req, res){
+        const id = req.params.id;
         try {
-            await Post.findOneAndUpdate({slug: req.params.slug}, req.body);
+            await Post.findOneAndUpdate(id, req.body);
             res.status(200).json({message: 'Updated successfully'});
         } catch (error) {
             res.status(404).json({message: error.message});
@@ -40,7 +39,7 @@ module.exports = class API{
     static async deletePost(req, res){
         const slug = req.params.slug;
         try {
-            const post = await Post.findOneAndDelete({slug: slug});
+            await Post.findOneAndDelete({slug: slug});
             res.status(200).json({message: 'Post deleted successfully'});
         } catch (error) {
             res.status(404).json({message: error.message});

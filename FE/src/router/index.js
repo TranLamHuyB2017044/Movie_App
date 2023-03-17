@@ -17,10 +17,10 @@ const routes = [
     component: AddPost,
   },
   {
-    path: "/:slug",
+    path: "/watch_:slug",
     name: "detail",
     component: DetailPost,
-    props: true,
+    props:true
   },
   {
     path: "/editPost/:slug",
@@ -37,7 +37,13 @@ const routes = [
     path: '/Signup',
     name: "signup",
     component: SignUp,
-  }
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "notfound",
+    component: () => import("@/views/NotFound.vue"),
+  },
+
   
 
 ];

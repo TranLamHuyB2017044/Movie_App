@@ -8,6 +8,7 @@ const postSchema = new Schema({
     description: String,
     image: String,
     videoId:String,
+    Time:String,
     slug: { type: String, slug: 'name' }
 
 }, {

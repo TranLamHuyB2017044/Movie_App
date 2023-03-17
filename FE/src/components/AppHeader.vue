@@ -9,8 +9,9 @@
                 <input type="search" name="" id="search-input" placeholder="Enter keywords...">
             </div>
             <router-link :to = "{name : 'signin'}" class="Login">
-                <i class="login-icon fa-regular fa-user "> Login</i>
+                <p class="login-text">Login</p>
             </router-link>
+            <i class="login-icon fa-regular fa-user "></i>
         </div>
     </header>
 </template>
@@ -62,7 +63,7 @@ header{
     padding: 8px 15px;
     background: white;
     border-radius: 4rem;
-    margin-right: 1rem;
+    margin-right: 1.4rem;
 }
 .search-box .fas{
     font-size: 1.1rem;
@@ -83,15 +84,34 @@ header{
     color: #24262b;
     background: transparent;
     font-size: 0.938rem;
+    
+    
 }
 .Login{
     margin-right: 0.813rem;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    text-decoration: none;
 }
 .login-icon{
-    color: white;
-    font-size: 16px;
+    color: #0088a9;
+    font-size: 24px;
+    padding: 10px 13px;
+    border-radius: 80px;
+    background-color: #ccc;
 }
-
+.login-text{
+    position: relative;
+    top: 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+    padding: 3px 18px;
+    background-color: #0088a9;
+}
+.login-text:hover{
+    opacity: 0.8;
+}
 .login-icon:hover{
     color: #0088a9;
 }

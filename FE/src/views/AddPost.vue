@@ -50,6 +50,17 @@
                 <ErrorMessage name="videoId" class="error-feedback" />
             </div>
             <div class="mb-3 form-group">
+                <label for="Time" class="form-label">Time</label>
+                <Field
+                    v-model="post.Time"
+                    name="Time"
+                    type="text"
+                    class="form-control"
+                    placeholder="Time"
+                 />
+                <ErrorMessage name="Time" class="error-feedback" />
+            </div>
+            <div class="mb-3 form-group">
                 <button type="submit" class="btn btn-primary">Add Post</button>
             </div>
         </Form>
@@ -82,7 +93,11 @@ export default{
                 .required(),
             videoId: yup
                 .string()
+                .required(),
+            Time: yup
+                .string() 
                 .required()
+
         });
         return {
             post:{},
@@ -98,6 +113,7 @@ export default{
             formData.append('author', this.post.author);
             formData.append('description', this.post.description);
             formData.append('videoId', this.post.videoId);
+            formData.append('Time', this.post.Time);
             await MovieService.addPost(formData);    
    
         }

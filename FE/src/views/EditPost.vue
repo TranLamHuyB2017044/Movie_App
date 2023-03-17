@@ -19,6 +19,10 @@
                     <input  v-model="post.videoId" name="videoId" type="text" class="form-control" placeholder="VideoID">
             </div>
             <div class="mb-3 form-group">
+                <label for="Time" class="form-label">Time</label>
+                    <input  v-model="post.Time" name="Time" type="text" class="form-control" placeholder="Time">
+            </div>
+            <div class="mb-3 form-group">
                 <button type="submit"  class="btn btn-primary">Save</button>
             </div>
         </form>
@@ -31,7 +35,6 @@ export default{
     data() {
         return {
             post:{},
-            status: false,
         }
     },
     async created() {
@@ -47,7 +50,8 @@ export default{
             formData.append('author', this.post.author);
             formData.append('description', this.post.description);
             formData.append('videoId', this.post.videoId);
-            await MovieService.updatePost(this.$route.params.slug, formData);    
+            formData.append('Time', this.post.Time);
+            await MovieService.updatePost(this.$route.params._id, formData);    
    
         }
     },

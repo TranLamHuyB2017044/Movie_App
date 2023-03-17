@@ -19,28 +19,25 @@
         </div>
       </section>
       <div
-        class="col-md-3 mt-5 d-flex col-12 col-sm-6 d-flex justify-content-end"
+        class=" col-md-3 mt-5 d-flex col-12 col-sm-6 d-flex justify-content-around"
         v-for="post in posts"
         :key="post._id"
       >
         <Router-link
-          class="card-movies"
-          :to="{ name: 'detail', params: { slug: post.slug } }"
+          class=" card-movies"
+          :to="{ name: 'detail', params: { slug: post.slug}}"
           @click.native="scrollToTop"
         >
-          <div class="card">
+          <div class="card moive">
             <img
-              :src="`https://i.ytimg.com/vi/${post.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`"
-              class="card-img-top"
-              alt=""
+              :src="`https://i.ytimg.com/vi/${post.videoId}/maxresdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`"
+              class="card-img-top movie-img"
+              :alt="`${post.name }`"
             >
-            <div class="card-body">
-              <h5 class="card-title">{{ post.name }}</h5>
-              <h5 class="card-title">{{ post.author }}</h5>
-              <p class="card-text">
-                {{ post.description.substring(0, 30) + "..." }}
-              </p>
-            </div>
+          <div class="moive-title">
+            <h5>{{ post.name }}</h5>
+            <i class="fa-solid fa-clock"> {{ post.Time }}</i>
+          </div>
           </div>
         </Router-link>
       </div>
@@ -96,5 +93,16 @@ export default {
 .card-movies:hover {
   transform: scale(1.1);
   transition: 0.5s;
+}
+
+.moive-title{
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 5px;
+
+}
+
+h5{
+  margin-top: -5px;
 }
 </style>
