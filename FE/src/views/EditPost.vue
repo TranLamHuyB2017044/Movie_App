@@ -23,7 +23,7 @@
                     <input  v-model="post.Time" name="Time" type="text" class="form-control" placeholder="Time">
             </div>
             <div class="mb-3 form-group">
-                <button type="submit"  class="btn btn-primary">Save</button>
+                <button type="submit" @click.native="scrollToTop" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
@@ -44,16 +44,21 @@ export default{
     methods: {
         async updateForm(){
             alert('Post update successfully!!');
-            this.$router.push({name: "home"})
+            this.$router.push({name: "detail", params: { slug: this.post.slug}})
             const formData = new FormData();
             formData.append('name', this.post.name);
             formData.append('author', this.post.author);
             formData.append('description', this.post.description);
             formData.append('videoId', this.post.videoId);
             formData.append('Time', this.post.Time);
-            await MovieService.updatePost(this.$route.params._id, formData);    
+            await MovieService.updatePost(this.$route.params.slug, formData);    
    
-        }
+        },
+        scrollToTop() {
+            window.scrollTo(0, 0);
+        },
+
+  
     },
                              
 }

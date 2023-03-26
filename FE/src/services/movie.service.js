@@ -16,11 +16,8 @@ class MovieService {
     async deletePost(slug) {
         return (await this.api.delete(`/${slug}`)).data;
     }
-    async updatePost(id, data) {
-        return (await this.api.put(`/${id}/edit`, data)).data;
-    }
-    async logIn(data){
-        return (await this.api.post(`/signin`, data)).data;
+    async updatePost(slug, data) {
+        return (await this.api.put(`/${slug}/edit`, data)).data;
     }
 }
 

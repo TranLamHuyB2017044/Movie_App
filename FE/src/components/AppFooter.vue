@@ -43,11 +43,6 @@
   	 </div>
   </div>
 </template>
-<script>
-export default{
-    
-}
-</script>
 <style scoped>
 .container{
 	max-width: 1170px;

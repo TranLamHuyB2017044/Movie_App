@@ -3,7 +3,7 @@
         <h2>Add New Post</h2>
         <Form
             class="form"
-            @submit="submitForm"
+            @submit.native="submitForm"
             :validation-schema="FormSchema"
         >
             <div class="mb-3 form-group">

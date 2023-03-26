@@ -35,8 +35,12 @@ export default defineComponent({
     };
     return { options };
   },
+  async created() {
+    this.posts = await MovieService.getAll();
+  },
   data() {
     return {
+      posts:{},
       cards: [
         {
           id: 1,

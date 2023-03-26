@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
-      
+    <div class="row"> 
       <sidebar-home />
       <!-- Popular -->
       <section class="popular container mt-5" ref="popular">
@@ -28,15 +27,15 @@
           :to="{ name: 'detail', params: { slug: post.slug}}"
           @click.native="scrollToTop"
         >
-          <div class="card moive">
+          <div class="moive">
             <img
               :src="`https://i.ytimg.com/vi/${post.videoId}/maxresdefault.jpg?sqp=-oaymwEcCNACELwBSFTyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCN-p51NBQHBICMaXtlW6-2-F5h5Q`"
               class="card-img-top movie-img"
-              :alt="`${post.name }`"
+              :alt="post.name"
             >
-          <div class="moive-title">
-            <h5>{{ post.name }}</h5>
-            <i class="fa-solid fa-clock"> {{ post.Time }}</i>
+            <div class="moive-title">
+              <h5>{{ post.name }}</h5>
+              <i class="fa-solid fa-clock"> {{ post.Time }}</i>
           </div>
           </div>
         </Router-link>
@@ -48,10 +47,12 @@
 import MovieService from "@/services/movie.service";
 import SidebarHome from "../components/SidebarHome.vue";
 import PopularMoives from "../components/PopularMoives.vue";
+
 export default {
   components:{
     SidebarHome,
     PopularMoives,
+
   },
   data() {
     return {
@@ -67,6 +68,7 @@ export default {
     },
 
   },
+
 };
 </script>
 <style scoped>
@@ -94,15 +96,27 @@ export default {
   transform: scale(1.1);
   transition: 0.5s;
 }
-
+.moive{
+  border: 0.5px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  padding: 0px 0 10px 0px;
+  margin: auto;
+}
+.movie-img{
+  height: 100%;
+  padding: 0px 0px 30px 0px;
+  border-radius: 10px;
+  
+}
 .moive-title{
   display: flex;
   justify-content: space-around;
   padding-bottom: 5px;
 
 }
-
 h5{
   margin-top: -5px;
 }
+
 </style>
