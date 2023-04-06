@@ -1,37 +1,39 @@
 <template>
-  <div class="card container">
-      <h4 class="card-header">Register</h4>
-      <div class="card-body">
+  <div class="container_form d-flex align-items-center justify-content-center">
+    <div class="card">
+      <h4 class="form-title">Register</h4>
+      <section class="card-body">
           <Form @submit="submitFormRegister" :validation-schema="schema" v-slot="{ errors, isSubmitting }">
-              <div class="form-group">
+              <section class="form-group">
                   <label>First Name</label>
                   <Field name="firstName" type="text" v-model="user.firstName" class="form-control" :class="{ 'is-invalid': errors.firstName }" />
-                  <div class="invalid-feedback">{{ errors.firstName }}</div>
-              </div>
-              <div class="form-group">
+                  <section class="invalid-feedback">{{ errors.firstName }}</section>
+              </section>
+              <section class="form-group">
                   <label>Last Name</label>
                   <Field name="lastName" type="text" v-model="user.lastName" class="form-control" :class="{ 'is-invalid': errors.lastName }" />
-                  <div class="invalid-feedback">{{ errors.lastName }}</div>
-              </div>
-              <div class="form-group">
+                  <section class="invalid-feedback">{{ errors.lastName }}</section>
+              </section>
+              <section class="form-group">
                   <label>Username</label>
                   <Field name="username" type="text" v-model="user.username" class="form-control" :class="{ 'is-invalid': errors.username }" />
-                  <div class="invalid-feedback">{{ errors.username }}</div>
-              </div>
-              <div class="form-group">
+                  <section class="invalid-feedback">{{ errors.username }}</section>
+              </section>
+              <section class="form-group">
                   <label>Password</label>
                   <Field name="password" type="password" v-model="user.password" class="form-control" :class="{ 'is-invalid': errors.password }" />
-                  <div class="invalid-feedback">{{ errors.password }}</div>
-              </div>
-              <div class="form-group">
+                  <section class="invalid-feedback">{{ errors.password }}</section>
+              </section>
+              <section class="form-group">
                   <button class="btn btn-primary" :disabled="isSubmitting">
                       <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
                       Register
                   </button>
                   <router-link to="login" class="btn btn-link">Cancel</router-link>
-              </div>
+              </section>
           </Form>
-      </div>
+      </section>
+  </div>
   </div>
 </template>
 
@@ -93,11 +95,41 @@ import {useUsersStore} from "../stores/user";
 
 </script>
 <style scoped>
-.container {
-  margin-top: 120px;
+.container_form{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    background: url(@/assets/arcane_br.png)  bottom;
+    animation: changebackground 12s linear infinite backwards;
 }
+
+
+@keyframes changebackground{
+  0%{
+    background: url(@/assets/arcane_br.png)  bottom;
+  }
+  50%{
+    background: url(@/assets/arcane_br2.png)  bottom;
+  }
+  75%{
+    background: url(@/assets/arcane_br3.jpg)  center ;
+  }
+  100%{
+    background: url(@/assets/arcane_br.png)  bottom;
+  }
+
+}
+
 .card{
-  background-color: #24252A;
+  border: 2px solid #0088a9;
+  width: 450px;
+  color: #fff;
+  background: transparent !important;
+  opacity: 0.8;
+  backdrop-filter: blur(20px);
+}
+
+.card{
   border: 2px solid #0088a9;
   width: 450px;
   color: #fff;
@@ -113,7 +145,11 @@ import {useUsersStore} from "../stores/user";
   text-decoration: none;
   font-size: 18px;
 }
-
+.form-title{
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+}
 .error-feedback {
   color: red;
   margin: auto;

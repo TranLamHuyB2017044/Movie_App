@@ -35,7 +35,7 @@ module.exports = class userApi {
   static async getUser(req, res) {
     const id = req.params.id;
     try {
-      const user = await User.findById(id);
+      const user = await User.findById(id)
       res.status(200).json(user);
     } catch (error) {
       res.status(404).json({ message: error.message });

@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar">
+    <div class="navbar d-none d-lg-flex">
         <router-link :to = "{name: 'home'}" @click="scrollToTop" class="nav-link">
             <i class="fa-solid fas fa-house"> <a href="#home"></a></i>
             <span class="nav-link-title"> Home</span>
@@ -8,14 +8,14 @@
             <i class="fa-regular fas fa-square-plus"></i>
             <span class="nav-link-title"> Create</span>
         </router-link>
-        <a  class="nav-link">
-            <i class="fa-solid fas fa-fire"></i>
-            <span class="nav-link-title">Trending</span>
-        </a>
-        <a href="#" class="nav-link">
+        <router-link :to = "{name: 'favorite'}" class="nav-link">
+            <i class="fa-solid fas fa-heart"></i>
+            <span class="nav-link-title"> Favorites</span>
+        </router-link>
+        <router-link :to = "{name: 'movie'}" class="nav-link">
             <i class="fa-solid fas fa-tv"></i>
             <span class="nav-link-title"> Movies</span>
-        </a>
+        </router-link>
     </div>
 </template>
 <script>

@@ -1,14 +1,40 @@
 <template>
   <div class="container" id="popular">
     <div class="row">
-      <Splide :options="options" aria-label="My Favorite Images">
+      <Splide :options="options" class="d-lg-flex d-none" aria-label="My Favorite Images">
         <SplideSlide class="Moives-box" v-for="card in cards" :key="card.id">
-          <img :src="`${card.img}`" class="movie-box-img" />
-          <section class="box-text">
-            <a href="#" class="watch-btn">
-              <i class="bx fa-solid fa-play"></i>
-            </a>
-          </section>
+          <img  :src="`${card.img}`" class="movie-box-img" />
+          <router-link @click="scrollToTop" :to="{ name: 'detail', params: { slug: card.slug }}">
+            <section class="box-text">
+              <a href="#" class="watch-btn">
+                <i class="bx fa-solid fa-play"></i>
+              </a>
+            </section>
+          </router-link>
+        </SplideSlide>
+      </Splide>
+      <Splide :options="optionIpad" class="d-lg-none d-md-block d-sm-none d-none" aria-label="My Favorite Images">
+        <SplideSlide class="Moives-box" v-for="card in cards" :key="card.id">
+          <img  :src="`${card.img}`" class="movie-box-img" />
+          <router-link @click="scrollToTop" :to="{ name: 'detail', params: { slug: card.slug }}">
+            <section class="box-text">
+              <a href="#" class="watch-btn">
+                <i class="bx fa-solid fa-play"></i>
+              </a>
+            </section>
+          </router-link>
+        </SplideSlide>
+      </Splide>
+      <Splide :options="optionMobile" class="d-md-none d-flex" aria-label="My Favorite Images">
+        <SplideSlide class="Moives-box" v-for="card in cards" :key="card.id">
+          <img  :src="`${card.img}`" class="movie-box-img" />
+          <router-link @click="scrollToTop" :to="{ name: 'detail', params: { slug: card.slug }}">
+            <section class="box-text">
+              <a href="#" class="watch-btn">
+                <i class="bx fa-solid fa-play"></i>
+              </a>
+            </section>
+          </router-link>
         </SplideSlide>
       </Splide>
     </div>
@@ -33,77 +59,102 @@ export default defineComponent({
       perPage: 6,
       arrows: false,
     };
-    return { options };
+    const optionIpad = {
+      rewind: true,
+      gap: "1rem",
+      autoplay: true,
+      type: "loop",
+      pauOnFocus: false,
+      perPage: 3,
+      arrows: false,
+    };
+    const optionMobile = {
+      rewind: true,
+      gap: "1rem",
+      autoplay: true,
+      type: "loop",
+      pauOnFocus: false,
+      perPage: 1,
+      arrows: false,
+    };
+    return { options, optionMobile, optionIpad };
   },
-  async created() {
-    this.posts = await MovieService.getAll();
-  },
+  // async created() {
+  //   this.posts = await MovieService.getAll();
+  // },
   data() {
     return {
-      posts:{},
+      // posts:{},
       cards: [
         {
           id: 1,
-          name: "Arcane",
           img: "../src/assets/arcane.jpg",
+          slug: "arcane",
         },
         {
           id: 2,
-          name: "AquaMan",
           img: "../src/assets/aquaman.jpg",
+          slug: "aquaman",
         },
         {
           id: 3,
-          name: "Joker",
           img: "../src/assets/joker.jpg",
+          slug: "joker",
         },
         {
           id: 4,
-          name: "Ant Man",
           img: "../src/assets/ant-man_4.jpg",
+          slug: "ant-man-quantumania",
         },
         {
           id: 5,
-          name: "End Game",
           img: "../src/assets/endgame.jpg",
+          slug: "avengers-endgame",
         },
         {
           id: 6,
-          name: "Godzilla",
           img: "../src/assets/godzilla.jpg",
+          slug: "godzilla",
         },
         {
           id: 7,
-          name: "Bumblebee",
           img: "../src/assets/bumblebee.jpg",
+          slug: "bumblebee",
         },
         {
           id: 8,
-          name: "Tenet",
           img: "../src/assets/tenet.jpg",
+          slug: "tenet",
         },
         {
           id: 9,
-          name: "Jumanji",
           img: "../src/assets/jumanji.jpg",
+          slug: "jumanji",
         },
         {
           id: 10,
-          name: "Jumanji",
           img: "../src/assets/thienmenhanhhung.jpg",
+          slug: "thien-menh-anh-hung",
         },
         {
           id: 11,
-          name: "Jumanji",
           img: "../src/assets/dragontrain.jpg",
+          slug: "ht-train-your-dragon",
         },
         {
           id: 12,
-          name: "Jumanji",
           img: "../src/assets/glass.jpg",
+          slug: "glass",
         },
       ],
     };
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
+
+
   },
 });
 </script>

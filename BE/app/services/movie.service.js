@@ -9,7 +9,8 @@ const postSchema = new Schema({
     image: String,
     videoId:String,
     Time:String,
-    slug: { type: String, slug: 'name' }
+    slug: { type: String, slug: 'name' },
+    favorite: {type: Boolean, default: false}
 
 }, {
     timestamps: true,

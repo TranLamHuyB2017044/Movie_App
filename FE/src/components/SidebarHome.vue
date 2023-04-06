@@ -2,7 +2,7 @@
     <div class="container">
         <Splide :options="options" aria-label="My Favorite Images">
             <SplideSlide>
-                <img src="../assets/fast.jpg" alt="Sample 1">
+                <router-link :to="{ name: 'detail', params: { slug: 'fast-and-furious'}}"><img src="../assets/fast.jpg" alt="Sample 1"></router-link>
                 <section class="slide-text">
                     <h1 class="slide-title">Fast & Furious <br/> Hobbs & Shaw</h1>
                     <p>Releasing 10 April</p>
@@ -13,7 +13,7 @@
                 </section>
             </SplideSlide>
             <SplideSlide>
-                <img src="../assets/Alita_poster.jpg" alt="Sample 2">
+                <router-link :to="{ name: 'detail', params: { slug: 'alita'}}"><img src="../assets/Alita_poster.jpg" alt="Sample 2"></router-link>
                 <section class="slide-text">
                     <h1 class="slide-title">Alita <br/> Battle Angel</h1>
                     <p>Releasing 15 Feb</p>
@@ -24,7 +24,7 @@
                 </section>
             </SplideSlide>
             <SplideSlide>
-                <img src="../assets/avengers.jpg" alt="Sample 3">
+                <router-link :to="{ name: 'detail', params: { slug: 'avengers-age-of-ultron'}}"><img src="../assets/avengers.jpg" alt="Sample 3"></router-link>
                 <section class="slide-text">
                     <h1 class="slide-title">Avengers <br/>Age of Ultron</h1>
                     <p>Releasing 12 May</p>
@@ -67,6 +67,7 @@ export default defineComponent({
     height: 500px;
     border-radius: 10px;
     z-index: -1;
+    
 }
 
 .slide-text{

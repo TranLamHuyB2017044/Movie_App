@@ -4,15 +4,12 @@
             <router-link class="logo" :to="{ name: 'home' }">
                 Movie<span>Vel</span>
             </router-link>
-            <div class="search-box">
+            <div class="search-box d-none d-lg-flex">
                 <i class="fas fa-solid fa-magnifying-glass"></i>
                 <input type="search" name="" id="search-input" placeholder="Enter keywords..." />
             </div>
-            <!-- <router-link  :to="{ name: 'login' }" class="Login">  
-                <button v-if="!this.UsersStore.user" :key="!this.UsersStore.user" class="login-text ">Login</button>
-            </router-link> -->
             <div v-if="this.UsersStore.user" class="islogin">
-                <h2 class="islogin-text"> Hi, {{ this.UsersStore.user.lastName }}</h2>
+                <h2 class="islogin-text d-none d-md-block"> Hi, {{ this.UsersStore.user.lastName }}</h2>
                 <div class="dropdown">
                     <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,7 +20,9 @@
                             <li class="dropdown-item">Edit Profile</li>
                         </router-link>
                         <li><a class="dropdown-item" @click="logout">Logout</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><router-link :to = "{name: 'movie'}" class="dropdown-item d-lg-none">Movie</router-link></li>
+                        <li><router-link :to = "{name: 'favorite'}" class="dropdown-item d-lg-none" >Favorite</router-link></li>
+                        <li><router-link :to = "{name: 'add'}" class="dropdown-item d-lg-none">Create</router-link></li>
                     </ul>
                 </div>
             </div>           
@@ -181,5 +180,18 @@ header {
 
 .login-icon:hover {
     color: #0088a9;
+}
+
+@media (min-width: 321px){
+    .logo{
+        left: 20px
+    }
+};
+
+@media (max-width: 320px){
+    .logo{
+        left: 15px;
+        bottom: 5px;
+    }
 }
 </style>

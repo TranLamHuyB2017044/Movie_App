@@ -19,6 +19,9 @@ class MovieService {
     async updatePost(slug, data) {
         return (await this.api.put(`/${slug}/edit`, data)).data;
     }
+    async getAllFavorites(){
+        return  (await this.api.get('/favorite')).data;
+    }
 }
 
 export default new MovieService();

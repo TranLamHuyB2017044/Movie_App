@@ -6,6 +6,8 @@ import EditPost from "@/views/EditPost.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import DetailProfile from "@/views/DetailProfile.vue";
+import Movie from "@/views/Movie.vue";
+import Favorite from "@/views/Favorite.vue";
 const routes = [
   {
     path: "/",
@@ -21,6 +23,18 @@ const routes = [
     path: "/watch_:slug",
     name: "detail",
     component: DetailPost,
+    props: true,
+  },
+  {
+    path: "/movie",
+    name: "movie",
+    component: Movie,
+    props: true,
+  },
+  {
+    path: "/favorite",
+    name: "favorite",
+    component: Favorite,
     props: true,
   },
   {

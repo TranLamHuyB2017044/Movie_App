@@ -3,7 +3,6 @@ import userService from '../services/user.service';
 
 
 export const useUsersStore = defineStore("users", {
-    id: 'users',
     state: () => ({
         user: null,
     }),

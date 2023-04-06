@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <div class="container">
-      <app-header />
-      <app-navbar />
-      <RouterView></RouterView>
-      <app-footer />
-    </div>
+    <AppHeader v-if="this.UsersStore.user" />
+    <AppNavbar v-if="this.UsersStore.user" />
+    <RouterView></RouterView>
+    <AppFooter v-if="this.UsersStore.user" />
   </div>
 </template>
 
 <script>
+import { RouterView } from "vue-router";
 import { useUsersStore } from "./stores/user";
 import AppHeader from "./components/AppHeader.vue";
 import AppNavbar from "./components/AppNavbar.vue";
@@ -24,9 +23,9 @@ export default {
     const UsersStore = useUsersStore();
     return { UsersStore };
   },
-  mounted() {
+  async mounted() {
     const userID = localStorage.getItem("id");
-    this.UsersStore.getById(userID);
+    await this.UsersStore.getById(userID);
   },
 };
 </script>
@@ -35,7 +34,7 @@ export default {
 *
   :not(section):not(h1):not(p):not(a):not(i):not(span):not(h2):not(h5):not(
     svg
-  ):not(ul):not(li):not(button) {
+  ):not(ul):not(li):not(button):not(h4):not(Form):not(label) {
   background-color: #24252a;
 }
 

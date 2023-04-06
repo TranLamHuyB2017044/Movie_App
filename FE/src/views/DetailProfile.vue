@@ -1,20 +1,18 @@
 <template>
   <div class="container">
-    <div class="round-1"></div>
-    <div class="round-2"></div>
     <div class="wrapper">
       <div class="box">
         <div class="profile-img">
           <img
             alt=""
-            src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/279638355_715296559610620_976661376510071519_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GyS0bsw7cFwAX8jYx5M&_nc_ht=scontent.fhan2-4.fna&oh=00_AfCDQNJlLGLlEbApZyL4yKgdljrfuaESHvP-5RE4yJa7sw&oe=64256380"
+            src="../assets/computer-user-icon.png"
           />
         </div>
         <h2>
-          {{ this.useUser.user.lastName }}
+          {{ this.user.lastName }}
           <span class="mt-2"
             >{{
-              this.useUser.user.firstName + " " + this.useUser.user.lastName
+              this.user.firstName + " " + this.user.lastName
             }}, USA</span
           >
         </h2>
@@ -42,10 +40,11 @@
       </div>
     </div>
     <form class="row g-3 form" @submit.prevent="updateUser">
+      <h2>User Profile <br/></h2>
       <div class="col-md-6">
         <label for="firstname" class="form-label">FirstName</label>
         <input
-          v-model="this.useUser.user.firstName"
+          v-model="this.user.firstName"
           type="text"
           class="form-control"
           id="firstname"
@@ -54,28 +53,19 @@
       <div class="col-md-6">
         <label for="lastname" class="form-label">LastName</label>
         <input
-          v-model="this.useUser.user.lastName"
+          v-model="this.user.lastName"
           type="text"
           class="form-control"
           id="lastname"
         />
       </div>
-      <!-- <div class="col-12">
-        <label for="username" class="form-label">UserName</label>
-        <input
-          type="text"
-          class="form-control"
-          id="username"
-          v-model="this.useUser.user.username"
-        />
-      </div> -->
       <div class="col-12">
         <label for="password" class="form-label">PassWord</label>
         <input
           type="password"
           class="form-control"
           id="password"
-          v-model="this.useUser.user.password"
+          v-model="this.newPass"
         />
       </div>
       <div class="col-12">
@@ -86,7 +76,6 @@
 </template>
 <script>
 import { useUsersStore } from "../stores/user";
-// import userService from '../services/user.service';
 export default {
   setup() {
     const useUser = useUsersStore();
@@ -95,62 +84,40 @@ export default {
   data() {
     return {
       user: {},
+      newPass: "",
     };
-  },
-  async created(id) {
-    const response = await this.useUser.getById(id);
-    this.user = response;
   },
   methods: {
     async updateUser() {
       try {
         alert("User update successfully!!");
-        const formData = new FormData();
-        formData.append("firstname", this.useUser.user.firstName);
-        formData.append("lastname", this.useUser.user.lastName);
-        formData.append("password", this.useUser.user.password);
-        await this.useUser.update(id, formData);
+        this.useUser.user.password = this.newPass;
+        await this.useUser.update(this.useUser.user._id, this.useUser.user);
       } catch (error) {
-          console.error(error);
+        console.error(error);
       }
     },
+  },
+  async mounted() {
+    const userID = localStorage.getItem("id");
+    await this.useUser.getById(userID);
+    this.user = this.useUser.user;
+    console.log(userID)
+    console.log(this.useUser.user);
   },
 };
 </script>
 <style scoped>
+.container{
+  display: flex;
+  align-items: center;
+}
 .wrapper {
   width: 1152px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  /* margin: 0 auto; */
-  margin-left: 70px;
-  position: relative;
 }
-
-.round-1 {
-  position: absolute;
-  top: 5%;
-  left: 32%;
-  width: 13em;
-  height: 13em;
-  border-radius: 50%;
-  box-shadow: 0 0 50px #d84869;
-  background: linear-gradient(-25deg, #d84869, #f46641);
-}
-
-.round-2 {
-  position: absolute;
-  top: 50%;
-  right: 23%;
-  width: 19em;
-  height: 19em;
-  border-radius: 50%;
-  box-shadow: 0 0 50px #5622ff;
-  background: linear-gradient(180deg, #5622ff, #4190fd);
-}
-
 .box {
   width: 350px;
   height: 450px;
@@ -249,14 +216,39 @@ export default {
 .profile-img img {
   width: 100%;
 }
+
 .form {
-  display: flex;
-  width: 700px;
-  justify-content: flex-end;
-  position: relative;
-  right: 0px;
-  left: 600px;
-  /* margin-top: -400px; */
-  bottom: 440px;
+  border: 1px solid #0088a9;
+  height: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: -1px 1px 35px 9px rgba(0,0,0,0.47);
+-webkit-box-shadow: -1px 1px 35px 9px rgba(0,0,0,0.47);
+-moz-box-shadow: -1px 1px 35px 9px rgba(0,0,0,0.47);
+}
+.form h2{
+  text-align: center;
+  color: #4190fd;
+  text-transform: uppercase;
+}
+
+@media (max-width: 415px) {
+    .container{
+      flex-direction: column;
+      align-items: center;
+
+    }
+    .wrapper{
+      width: 100%;
+      margin-top: 30px;
+    }
+}
+@media (min-width: 420px) and (max-width: 992px) {
+    .container{
+      flex-direction: column;
+    }
+    .wrapper{
+      width: 100%;
+    }
 }
 </style>
