@@ -40,7 +40,6 @@
 <script>
 import * as Yup from "yup";
 import { Form, Field} from "vee-validate";
-import userService from "../services/user.service";
 import {useUsersStore} from "../stores/user";
   export default {
     setup(){
@@ -85,7 +84,9 @@ import {useUsersStore} from "../stores/user";
             })
             await this.$router.push({name: 'login'})
             alert('Registered successfully')
+
           } catch (error) {
+              alert('Failed to register username already registered');
               console.log(error)
           }  
        }
@@ -100,24 +101,6 @@ import {useUsersStore} from "../stores/user";
     height: 100vh;
     margin: 0;
     background: url(@/assets/arcane_br.png)  bottom;
-    animation: changebackground 12s linear infinite backwards;
-}
-
-
-@keyframes changebackground{
-  0%{
-    background: url(@/assets/arcane_br.png)  bottom;
-  }
-  50%{
-    background: url(@/assets/arcane_br2.png)  bottom;
-  }
-  75%{
-    background: url(@/assets/arcane_br3.jpg)  center ;
-  }
-  100%{
-    background: url(@/assets/arcane_br.png)  bottom;
-  }
-
 }
 
 .card{

@@ -22,10 +22,10 @@
         v-for="post in posts"
         :key="post._id"
       >
-        <Router-link
+        <router-link
+          @click="scrollToTop"
           class="card-movies"
           :to="{ name: 'detail', params: { slug: post.slug } }"
-          @click.native="scrollToTop"
         >
           <div class="moive">
             <img
@@ -39,13 +39,13 @@
               <i class="fa-solid fa-clock"> {{ post.Time }}</i>
             </div>
           </div>
-        </Router-link>
+        </router-link>
       </section>
     </div>
   </div>
 </template>
 <script>
-import MovieService from "@/services/movie.service";
+import MovieService from "../services/movie.service";
 import SidebarHome from "../components/SidebarHome.vue";
 import PopularMoives from "../components/PopularMoives.vue";
 
@@ -59,8 +59,9 @@ export default {
       posts: [],
     };
   },
-  async created() {
-    this.posts = await MovieService.getAll();
+  async  mounted() {
+    this.posts = await MovieService.getAll().then(result => result).catch((err) =>console.error(err));
+    console.log(this.posts[0].slug)
   },
   methods: {
     scrollToTop() {

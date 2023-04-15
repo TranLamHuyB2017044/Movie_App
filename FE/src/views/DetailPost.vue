@@ -46,7 +46,7 @@
     </div>
 </template>
 <script>
-import MovieService from "@/services/movie.service";
+import MovieService from "../services/movie.service";
 import PopularMoives from "../components/PopularMoives.vue";
 export default {
     props: { slug: { type: String, required: true } },

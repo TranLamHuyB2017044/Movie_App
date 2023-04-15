@@ -38,12 +38,13 @@ export default {
         return { UsersStore };
     },
     methods: {
-        async logout() {
+         logout() {
             localStorage.removeItem('id');
             this.UsersStore.user = null;
-            this.$router.push('/login')
+            this.$router.push({name: 'login'});
         },
     },
+
 };
 </script>
 <style>

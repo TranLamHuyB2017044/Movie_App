@@ -69,7 +69,7 @@
   </div>
 </template>
 <script>
-import MovieService from "@/services/movie.service";
+import MovieService from "../services/movie.service";
 import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
 export default {
@@ -101,15 +101,20 @@ export default {
   },
   methods: {
     async submitForm() {
-      alert("Post create successfully!!");
-      this.$router.push({ name: "home" });
-      const formData = new FormData();
-      formData.append("name", this.post.name);
-      formData.append("author", this.post.author);
-      formData.append("description", this.post.description);
-      formData.append("videoId", this.post.videoId);
-      formData.append("Time", this.post.Time);
-      await MovieService.addPost(formData);
+      try {
+        // const formData = new FormData();
+        // formData.append("name", this.post.name);
+        // formData.append("author", this.post.author);
+        // formData.append("description", this.post.description);
+        // formData.append("videoId", this.post.videoId);
+        // formData.append("Time", this.post.Time);
+        // console.log(this.post,formData);
+        await MovieService.addPost(this.post);
+        alert("Post create successfully!!");
+        this.$router.push({ name: "home" });
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

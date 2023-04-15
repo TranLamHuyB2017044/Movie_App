@@ -1,13 +1,13 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/Home.vue";
-import AddPost from "@/views/AddPost.vue";
-import DetailPost from "@/views/DetailPost.vue";
-import EditPost from "@/views/EditPost.vue";
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
-import DetailProfile from "@/views/DetailProfile.vue";
-import Movie from "@/views/Movie.vue";
-import Favorite from "@/views/Favorite.vue";
+import Home from "../views/Home.vue";
+import AddPost from "../views/AddPost.vue";
+import DetailPost from "../views/DetailPost.vue";
+import EditPost from "../views/EditPost.vue";
+import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
+import DetailProfile from "../views/DetailProfile.vue";
+import Movie from "../views/Movie.vue";
+import Favorite from "../views/Favorite.vue";
 const routes = [
   {
     path: "/",
@@ -20,7 +20,7 @@ const routes = [
     component: AddPost,
   },
   {
-    path: "/watch_:slug",
+    path: "/detail/:slug",
     name: "detail",
     component: DetailPost,
     props: true,
@@ -63,7 +63,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)*",
     name: "notfound",
-    component: () => import("@/views/NotFound.vue"),
+    component: () => import("../views/NotFound.vue"),
   },
 ];
 const router = createRouter({

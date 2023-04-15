@@ -102,8 +102,6 @@ export default {
     const userID = localStorage.getItem("id");
     await this.useUser.getById(userID);
     this.user = this.useUser.user;
-    console.log(userID)
-    console.log(this.useUser.user);
   },
 };
 </script>

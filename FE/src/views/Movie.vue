@@ -29,7 +29,7 @@
     </div>
   </template>
   <script>
-import MovieService from "@/services/movie.service";
+import MovieService from "../services/movie.service";
   export default {
     data() {
       return {
