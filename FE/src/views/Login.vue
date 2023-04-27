@@ -30,6 +30,7 @@
 import * as yup from "yup";
 import { Form, Field } from "vee-validate";
 import { useUsersStore } from "../stores/user";
+import MyAlert from "../services/MyAlert";
   export default {
     setup(){
       const UsersStore = useUsersStore();
@@ -60,12 +61,12 @@ import { useUsersStore } from "../stores/user";
             this.user.password
           )
           if(!this.UsersStore.user){
-            alert('Username or password is incorrect')
+            MyAlert.Alert('error', 'Username or password is incorrect')
             return;
           }
           else{
               await this.$router.push({name: 'home'})
-              alert('Login successfully');
+              MyAlert.Alert('success', 'Login successfully');
           }
           } catch (error) {
             console.log(error)

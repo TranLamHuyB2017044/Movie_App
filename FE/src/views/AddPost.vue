@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="form-container">
     <Form
       class="card form"
       @submit.native="submitForm"
@@ -72,6 +72,7 @@
 import MovieService from "../services/movie.service";
 import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
+import MyAlert from "../services/MyAlert";
 export default {
   components: {
     Form,
@@ -102,15 +103,8 @@ export default {
   methods: {
     async submitForm() {
       try {
-        // const formData = new FormData();
-        // formData.append("name", this.post.name);
-        // formData.append("author", this.post.author);
-        // formData.append("description", this.post.description);
-        // formData.append("videoId", this.post.videoId);
-        // formData.append("Time", this.post.Time);
-        // console.log(this.post,formData);
         await MovieService.addPost(this.post);
-        alert("Post create successfully!!");
+        MyAlert.Alert('success', "Post create successfully!!");
         this.$router.push({ name: "home" });
       } catch (error) {
         console.log(error);
@@ -120,16 +114,15 @@ export default {
 };
 </script>
 <style scoped>
-.container {
+.form-container {
   display: flex;
   align-items: center;
-  margin-top: 110px;
   justify-content: center;
 }
 .form {
   padding-bottom: 10px;
   background-color: #24252a;
-  margin: auto;
+  margin: 100px auto;
   width: 550px;
   border: 2px solid #0088a9;
   border-radius: 10px;

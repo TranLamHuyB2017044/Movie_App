@@ -56,7 +56,7 @@ ul{
 	list-style: none;
 }
 .footer{
-	background-color: #24252A;
+	background-color: #18191a;
     padding: 70px 0;
 }
 .footer-col{

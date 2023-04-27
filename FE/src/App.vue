@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader v-if="this.UsersStore.user" />
     <AppNavbar v-if="this.UsersStore.user" />
-    <RouterView></RouterView>
+    <RouterView  :key="this.$route.path"></RouterView>
     <AppFooter v-if="this.UsersStore.user" />
   </div>
 </template>
@@ -30,13 +30,16 @@ export default {
 </script>
 
 <style>
-*
+/* *
   :not(section):not(h1):not(p):not(a):not(i):not(span):not(h2):not(h5):not(
     svg
   ):not(ul):not(li):not(button):not(h4):not(Form):not(label) {
   background-color: #24252a;
-}
+} */
 
+#app{
+  background-color: #18191a;
+}
 p,
 h2,
 title,
@@ -47,9 +50,11 @@ label {
 html::-webkit-scrollbar {
   width: 0.5rem;
   background: transparent;
+  background: #24252a;
 }
 
 html::-webkit-scrollbar-thumb {
   background: #0088a9;
+  border-radius: 10px;
 }
 </style>

@@ -33,11 +33,11 @@
               class="card-img-top movie-img"
               :alt="post.name"
             />
-            <div class="moive-title">
+            <!-- <div class="moive-title">
               <h5 v-if="post.name.length > 10">{{ post.name.substring(0, 10)+ "..." }}</h5>
               <h5 v-else>{{ post.name}}</h5>
               <i class="fa-solid fa-clock"> {{ post.Time }}</i>
-            </div>
+            </div> -->
           </div>
         </router-link>
       </section>
@@ -45,7 +45,8 @@
   </div>
 </template>
 <script>
-import MovieService from "../services/movie.service";
+// import MovieService from "../services/movie.service";
+import { useFilmStore } from "../stores/film";
 import SidebarHome from "../components/SidebarHome.vue";
 import PopularMoives from "../components/PopularMoives.vue";
 
@@ -59,9 +60,13 @@ export default {
       posts: [],
     };
   },
+  setup(){
+    const useFilm = useFilmStore()
+    return {useFilm}
+  },
   async  mounted() {
-    this.posts = await MovieService.getAll().then(result => result).catch((err) =>console.error(err));
-    console.log(this.posts[0].slug)
+    this.posts = await this.useFilm.getAllFilms()
+    this.posts= this.useFilm.films;
   },
   methods: {
     scrollToTop() {
@@ -97,10 +102,7 @@ export default {
   transform: scale(1.1);
   transition: 0.5s;
 }
-.moive {
-  box-shadow: -7px 12px 20px 3px rgba(0,0,0,0.72);
--webkit-box-shadow: -7px 12px 20px 3px rgba(0,0,0,0.72);
--moz-box-shadow: -7px 12px 20px 3px rgba(0,0,0,0.72);
+/* .moive {
   border-radius: 10px;
   width: 100%;
   padding: 0px 0 10px 0px;
@@ -110,7 +112,6 @@ export default {
 .movie-img {
   height: 100%;
   padding: 0px 0px 30px 0px;
-  border-radius: 10px;
 }
 .moive-title {
   display: flex;
@@ -119,7 +120,7 @@ export default {
 }
 h5 {
   margin-top: -5px;
-}
+} */
 
 
 

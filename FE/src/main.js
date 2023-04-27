@@ -9,5 +9,4 @@ const pinia = createPinia();
 // slidejs config
 import VueSplide from '@splidejs/vue-splide';
 import '@splidejs/vue-splide/css/sea-green';
-
 createApp(App).use(pinia).use(router).use( VueSplide ).mount('#app');

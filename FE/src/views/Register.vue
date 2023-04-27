@@ -41,6 +41,7 @@
 import * as Yup from "yup";
 import { Form, Field} from "vee-validate";
 import {useUsersStore} from "../stores/user";
+import MyAlert from "../services/MyAlert";
   export default {
     setup(){
       const UsersStore = useUsersStore();
@@ -83,10 +84,10 @@ import {useUsersStore} from "../stores/user";
                   password : this.user.password
             })
             await this.$router.push({name: 'login'})
-            alert('Registered successfully')
+            MyAlert.Alert('success', 'Registered successfully')
 
           } catch (error) {
-              alert('Failed to register username already registered');
+            MyAlert.Alert('error', 'Failed to register username already registered');
               console.log(error)
           }  
        }

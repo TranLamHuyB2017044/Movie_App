@@ -1,6 +1,6 @@
 <template>
-    <div class="container play-container" v-if="post">
-        <div class="play">
+    <div class="play-container" v-if="post">
+        <div class="play ">
             <iframe class="movie-img" :src="`https://www.youtube-nocookie.com/embed/${post.videoId}`" title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
@@ -37,7 +37,6 @@
                 <button @click="changeFavorite" v-if="!this.post.favorite" class="btn-favorite  d-lg-none"><i class="fa-solid fa-plus"></i></button>
                 <button @click="changeFavorite" v-else class="btn-favorite  d-lg-none"><i class="fa-solid fa-trash-can"></i></button>
             </div>
-
         </div>
         <h4>You may also like</h4>
         <a href="#">
@@ -48,6 +47,7 @@
 <script>
 import MovieService from "../services/movie.service";
 import PopularMoives from "../components/PopularMoives.vue";
+import MyAlert from "../services/MyAlert";
 export default {
     props: { slug: { type: String, required: true } },
     components:{
@@ -65,9 +65,10 @@ export default {
     },
     methods: {
         async deletePost(slug) {
-            if (confirm("Are you sure to delete this post ?")) {
+            var Confirm = await MyAlert.Confirm("Delete post", 'info', 'Are you sure to delete this post ?', 'yes')
+            if (Confirm) {
                 await MovieService.deletePost(slug);
-                alert("Post deleted successfully!!");
+                MyAlert.Alert('success', "Post deleted successfully!!");
                 this.$router.push({ name: "home" });
             } else {
                 return false;
@@ -76,10 +77,10 @@ export default {
         async changeFavorite(){
             this.post.favorite = !this.post.favorite
             if(this.post.favorite==true) {
-                alert('Added favorite successfully !!')
+                MyAlert.Alert('success', 'Added favorite successfully !!')
                 await MovieService.updatePost(this.$route.params.slug, {'favorite': this.post.favorite})
             }else{
-                alert('Remove favorite successfully !!')
+                MyAlert.Alert('success', 'Remove favorite successfully !!')
                 await MovieService.updatePost(this.$route.params.slug, {'favorite': this.post.favorite})
             }
         }
@@ -93,16 +94,14 @@ export default {
 
 
 .play{
-    margin-top: 100px;
     display: flex;
-    padding: 24px 24px 60px 40px;
     border: 1px solid #252424;
-    border-radius: 20px;
-    box-shadow: 0px 4px 3px 4px rgba(0,0,0,0.62);
-    -webkit-box-shadow: 0px 4px 3px 4px rgba(0,0,0,0.62);
-    -moz-box-shadow: 0px 4px 3px 4px rgba(0,0,0,0.62);
+    margin-top: 80px;
+    background: rgb(86,76,139);
+background: radial-gradient(circle, rgba(86,76,139,1) 0%, rgba(31,34,55,1) 0%);
 }
 .play-text{
+    margin: 50px;
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -121,10 +120,10 @@ export default {
     left: 150px;
 }
 .movie-img {
+    margin: 50px 30px 50px auto;
     border-radius: 10px;
-    width: 600px;
+    width: 500px;
     height: 300px;
-    margin: 0rem 2rem -2rem -1rem;
 }
 
 .btn-favorite{
@@ -135,8 +134,10 @@ export default {
     top : 0;
     background-color: #ccc;
 }
+
 h4{
     margin-top: 160px;
+    margin-left: 150px;
     color: #fff !important;
 }
 .btn-favorite:hover{

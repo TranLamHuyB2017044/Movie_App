@@ -76,6 +76,7 @@
 </template>
 <script>
 import { useUsersStore } from "../stores/user";
+import MyAlert from "../services/MyAlert";
 export default {
   setup() {
     const useUser = useUsersStore();
@@ -90,7 +91,7 @@ export default {
   methods: {
     async updateUser() {
       try {
-        alert("User update successfully!!");
+        MyAlert.Alert("success", "User update successfully!!");
         this.useUser.user.password = this.newPass;
         await this.useUser.update(this.useUser.user._id, this.useUser.user);
       } catch (error) {

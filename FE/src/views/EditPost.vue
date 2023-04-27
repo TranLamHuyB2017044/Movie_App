@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="form-container">
     <form class="form card" @submit.prevent="updateForm">
       <h2 class="card-header">Edit Post</h2>
       <div class="card-body">
@@ -67,7 +67,7 @@
 </template>
 <script>
 import MovieService from "../services/movie.service";
-
+import MyAlert from "../services/MyAlert";
 export default {
   data() {
     return {
@@ -80,17 +80,11 @@ export default {
       this.post = response;
     },
     async updateForm() {
-      alert("Post update successfully!!");
-      // const formData = new FormData();
-      // formData.append("name", this.post.name);
-      // formData.append("author", this.post.author);
-      // formData.append("description", this.post.description);
-      // formData.append("videoId", this.post.videoId);
-      // formData.append("Time", this.post.Time);
       const newPost = {...this.post}
       await MovieService.updatePost(this.$route.params.slug, newPost);
       await this.created();
       this.$forceUpdate();
+      MyAlert.Alert("success", "Post update successfully!!");
       this.$router.push({ name: "detail", params: { slug: this.post.slug }});
     },
     scrollToTop() {
@@ -104,16 +98,14 @@ export default {
 };
 </script>
 <style scoped>
-.container {
-  margin-top: 100px;
+.form-container {
   display: flex;
   align-items: center;
-  margin-top: 110px;
   justify-content: center;
 }
 .form {
   padding-bottom: 10px;
-  margin: auto;
+  margin: 110px auto;
   width: 550px;
   border: 2px solid #0088a9;
   border-radius: 10px;

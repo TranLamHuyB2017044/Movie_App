@@ -7,6 +7,7 @@ import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import DetailProfile from "../views/DetailProfile.vue";
 import Movie from "../views/Movie.vue";
+import SearchFilm from "../views/SearchFilm.vue";
 import Favorite from "../views/Favorite.vue";
 const routes = [
   {
@@ -58,6 +59,12 @@ const routes = [
     name: "edit-profile",
     component: DetailProfile,
     props: true,
+  },
+  {
+    path: "/search/:searchText",
+    name: "search",
+    component: SearchFilm,
+    props:true
   },
 
   {
