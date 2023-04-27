@@ -71,6 +71,7 @@ import MyAlert from "../services/MyAlert";
             "firstName" : "",
             "username" : "",
             "password" : "",
+            "admin" : false,
           }
       };
     },
@@ -81,7 +82,8 @@ import MyAlert from "../services/MyAlert";
                   firstName : this.user.firstName,
                   lastName : this.user.lastName,
                   username : this.user.username,
-                  password : this.user.password
+                  password : this.user.password,
+                  admin: this.user.admin
             })
             await this.$router.push({name: 'login'})
             MyAlert.Alert('success', 'Registered successfully')

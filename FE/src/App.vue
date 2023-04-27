@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" >
     <AppHeader v-if="this.UsersStore.user" />
     <AppNavbar v-if="this.UsersStore.user" />
     <RouterView  :key="this.$route.path"></RouterView>

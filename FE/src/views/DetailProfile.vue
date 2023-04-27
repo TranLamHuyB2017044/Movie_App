@@ -42,7 +42,7 @@
     <form class="row g-3 form" @submit.prevent="updateUser">
       <h2>User Profile <br/></h2>
       <div class="col-md-6">
-        <label for="firstname" class="form-label">FirstName</label>
+        <label for="firstname" class="form-label">First Name</label>
         <input
           v-model="this.user.firstName"
           type="text"
@@ -51,7 +51,7 @@
         />
       </div>
       <div class="col-md-6">
-        <label for="lastname" class="form-label">LastName</label>
+        <label for="lastname" class="form-label">Last Name</label>
         <input
           v-model="this.user.lastName"
           type="text"
@@ -60,7 +60,7 @@
         />
       </div>
       <div class="col-12">
-        <label for="password" class="form-label">PassWord</label>
+        <label for="password" class="form-label">New Password</label>
         <input
           type="password"
           class="form-control"
@@ -91,9 +91,14 @@ export default {
   methods: {
     async updateUser() {
       try {
-        MyAlert.Alert("success", "User update successfully!!");
-        this.useUser.user.password = this.newPass;
-        await this.useUser.update(this.useUser.user._id, this.useUser.user);
+        if(this.newPass.length == ''){
+          MyAlert.Alert('info', 'Please enter a new password');
+        }
+        else{
+          this.useUser.user.password = this.newPass;
+          await this.useUser.update(this.useUser.user._id, this.useUser.user);
+          MyAlert.Alert("success", "User update successfully!!");
+        }
       } catch (error) {
         console.error(error);
       }

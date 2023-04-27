@@ -53,7 +53,6 @@ module.exports = class userApi {
         req.body.password = await hashPassword(req.body.password);
       }
       const id = req.params.id;
-      console.log(req.params.id)
       const newUser = req.body;
       const result = await User.findByIdAndUpdate(id, newUser);
       return res.status(200).json({ success: true });
@@ -62,7 +61,7 @@ module.exports = class userApi {
     }
   }
   static async Register(req, res) {
-    const { firstName, lastName, username, password } = req.body;
+    const { firstName, lastName, username, password, admin } = req.body;
     const foundUser = await User.findOne({ username });
     if (foundUser) {
       return res.status(403).json({ message: "User already registered" });
@@ -73,6 +72,7 @@ module.exports = class userApi {
           lastName: lastName,
           username: username,
           password: password,
+          admin: admin,
         });
         // encode
         const token = endcodedToken(newUser._id);

@@ -19,6 +19,7 @@ class userService {
     async Login(data){
         return (await this.api.post(`/login`, data)).data;
     }
+
 }
 
 export default new userService();

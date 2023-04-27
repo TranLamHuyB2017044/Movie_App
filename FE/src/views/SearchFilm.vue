@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5" :key="this.$route.params.searchText" >
+  <div class="container film-container" :key="this.$route.params.searchText" >
     <div class="row">
       <div
         class="col-md-4 col-lg-3 mt-5 d-flex col-12 col-sm-6 d-flex justify-content-around"
@@ -49,8 +49,7 @@ export default {
     this.posts = await MovieService.getAll();
   },
   async mounted() {
-    console.log(this.$route.params.searchText);
-    this.searchText = this.$route.params.searchText;
+    this.searchText = await this.$route.params.searchText;
     await this.filmStore.getSearchFilm(this.searchText);
     this.searchFilm = await this.filmStore.searchFilm;
   },
@@ -65,6 +64,9 @@ export default {
 * {
   scroll-behavior: smooth;
 
+}
+.film-container{
+  margin: 70px auto;
 }
 .card-movies:hover {
   transform: scale(1.1);

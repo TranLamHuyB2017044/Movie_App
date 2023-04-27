@@ -22,13 +22,13 @@
                 <p>Casts: Chloe Guidry, Nhedrick Jabier, Carmina Garay, Billy Slaughter, Carli McIntyre</p>
                 <p>Country: United States of America</p>
                 <p>Duration: {{ post.Time }}inute</p>
-                <div class="d-flex justify-end justify-around">
+                <div class="d-flex justify-end justify-around" v-if="useUser.user.admin">
                     <button @click="
                         $router.push({ name: 'edit-post', params: { slug: post.slug } })
                         " type="button" class=" btn btn-success">
                         Edit
                     </button>
-                    <button @click="deletePost(post.slug)" type="button" class="btn btn-danger mx-2">
+                    <button @click="deletePost(post.slug)" type="button" class="btn btn-danger mx-2" >
                         Delete
                     </button>
                 </div>
@@ -48,10 +48,15 @@
 import MovieService from "../services/movie.service";
 import PopularMoives from "../components/PopularMoives.vue";
 import MyAlert from "../services/MyAlert";
+import { useUsersStore } from "../stores/user";
 export default {
     props: { slug: { type: String, required: true } },
     components:{
         PopularMoives
+    },
+    setup() {
+        const useUser = useUsersStore()
+        return {useUser}
     },
     data() {
         return {

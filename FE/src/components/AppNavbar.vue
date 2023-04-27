@@ -4,7 +4,7 @@
             <i class="fa-solid fas fa-house"> <a href="#home"></a></i>
             <span class="nav-link-title"> Home</span>
         </router-link>
-        <router-link class="nav-link" :to = "{name: 'add'}" >
+        <router-link class="nav-link" :to = "{name: 'add'}" v-if="useUser.user.admin">
             <i class="fa-regular fas fa-square-plus"></i>
             <span class="nav-link-title"> Create</span>
         </router-link>
@@ -19,7 +19,12 @@
     </div>
 </template>
 <script>
+import { useUsersStore } from '../stores/user';
 export default{
+    setup() {
+        const useUser = useUsersStore()
+        return {useUser}
+    },
     methods: { 
         scrollToTop() {
             window.scrollTo(0,0);
