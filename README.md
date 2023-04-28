@@ -20,12 +20,22 @@ npm install
 ```
 ### Usage
 - For server
+```sh
     cd be
-    npm start
-- For client
-    cd fe
-    npm run dev
+```
+Then 
 
+```sh
+    npm start
+```
+- For client
+```sh
+    cd fe
+```
+Then 
+```sh
+    npm run dev
+```
 ### Compile and Minify for Production
 
 ```sh
