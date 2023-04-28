@@ -104,7 +104,7 @@ export default defineComponent({
         {
           id: 4,
           img: "../src/assets/ant-man_4.jpg",
-          slug: "ant-man-quantumania",
+          slug: "ant-man",
         },
         {
           id: 5,

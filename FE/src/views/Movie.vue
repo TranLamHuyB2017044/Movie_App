@@ -17,11 +17,6 @@
                 class="card-img-top movie-img"
                 :alt="post.name"
               >
-              <!-- <div class="moive-title">
-                <h5 v-if="post.name.length > 10">{{ post.name.substring(0, 10)+ "..." }}</h5>
-                <h5 v-else>{{ post.name}}</h5>
-                <i class="fa-solid fa-clock"> {{ post.Time }}</i>
-            </div> -->
             </div>
           </Router-link>
         </div>

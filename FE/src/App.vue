@@ -30,12 +30,6 @@ export default {
 </script>
 
 <style>
-/* *
-  :not(section):not(h1):not(p):not(a):not(i):not(span):not(h2):not(h5):not(
-    svg
-  ):not(ul):not(li):not(button):not(h4):not(Form):not(label) {
-  background-color: #24252a;
-} */
 
 #app{
   background-color: #18191a;

@@ -1,29 +1,37 @@
-# FE
+Movies Application MEVN Stack
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Author
+👤 Huy Tran Lam
+    . Github: https://github.com/TranLamHuyB2017044
+    . Facebook: https://www.facebook.com/profile.php?id=100033908468520
+    . Gmail: tranlamhuy5tn@gmail.com
+## Description
+- Movies Application is a straightforward application powered by MEVN technology that you may use by setting up an account and login in to use its features.
+## Several of the app's features
+- Register, Login and Logout.
+- Watch the trailer of the movies.
+- Search the movies.
+- Add, Update, Delete movies (only if you are admin).
+- Update your user profile.
+## Install
 
 ```sh
 npm install
 ```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
+### Usage
+- For server
+    cd be
+    npm start
+- For client
+    cd fe
+    npm run dev
 
 ### Compile and Minify for Production
 
 ```sh
 npm run build
 ```
+
+## License
+Copyright ©️ 2023 Huy Tran Lam.
+
