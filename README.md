@@ -2,9 +2,9 @@ Movies Application MEVN Stack
 
 ## Author
 👤 Huy Tran Lam
-. Github: https://github.com/TranLamHuyB2017044
-. Facebook: https://www.facebook.com/profile.php?id=100033908468520
-. Gmail: tranlamhuy5tn@gmail.com
+- Github: https://github.com/TranLamHuyB2017044
+- Facebook: https://www.facebook.com/profile.php?id=100033908468520
+- Gmail: tranlamhuy5tn@gmail.com
 ## Description
 - Movies Application is a straightforward application powered by MEVN technology that you may use by setting up an account and login in to use its features.
 ## Several of the app's features
